@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>盘点固定资产</title>
+</head>
+<body>
+    <h1>盘点固定资产</h1>
+    <div>
+        <form action="" method="post">
+            <label for="asset_code">固定资产编码：</label>
+            <input type="text" id="asset_code" name="asset_code">
+            <button type="submit">查询</button>
+        </form>
+    </div>
+    <div>
+        <h2>固定资产信息</h2>
+        {% if asset %}
+            <p>固定资产编码：{{ asset[1] }}</p>
+            <p>使用人：{{ asset[2] }}</p>
+            <p>创建时间：{{ asset[3] }}</p>
+            <p>领用时间：{{ asset[4] }}</p>
+            <p>最后盘点时间：{{ asset[5] }}</p>
+            <form action="/update_inventory" method="post">
+                <input type="hidden" name="asset_id" value="{{ asset[0] }}">
+                <button type="submit">盘点</button>
+            </form>
+        {% endif %}
+    </div>
+    <div>
+        <a href="/index">返回</a>
+    </div>
+</body>
+</html>
+
